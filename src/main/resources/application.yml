@@ -1,0 +1,81 @@
+spring:
+  application:
+    name: social_login_test
+  profiles:
+    active: dev
+
+  config:
+    import: classpath:jwt-config.yml, classpath:google-config.yml, classpath:naver-config.yml, classpath:kakao-config.yml
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1GB
+      max-request-size: 1GB
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-name: ${google.name}
+            client-id: ${google.id}
+            client-secret: ${google.secret}
+            redirect-uri: ${google.redirect}
+            authorization-grant-type: ${google.authorization}
+            scope: ${google.scope}
+          naver:
+            client-name: ${naver.name}
+            client-id: ${naver.id}
+            client-secret: ${naver.secret}
+            redirect-uri: ${naver.redirect}
+            authorization-grant-type: ${naver.authorization}
+            scope: ${naver.scope}
+          kakao:
+            client-name: ${kakao.name}
+            client-id: ${kakao.id}
+            client-secret: ${kakao.secret}
+            redirect-uri: ${kakao.redirect}
+            authorization-grant-type: ${kakao.authorization}
+            scope: ${kakao.scope}
+            client-authentication-method: client_secret_post
+        provider:
+          naver:
+            authorization-uri: ${naver.authorization-url}
+            token-uri: ${naver.token-url}
+            user-info-uri: ${naver.info-utl}
+            user-name-attribute: ${naver.attribute}
+          kakao:
+            authorization-uri: ${kakao.authorization-url}
+            token-uri: ${kakao.token-url}
+            user-info-uri: ${kakao.info-utl}
+            user-name-attribute: ${kakao.attribute}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306
+    username: root
+    password: 1234
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 1000 #최적화 옵션
+
+server:
+  port: 9090
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+
+logging:
+  level:
+    root: info
+
+jwt: ${jwt.secret}

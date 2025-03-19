@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/google-config.yml
+/src/main/resources/jwt-config.yml
+/src/main/resources/kakao-config.yml
+/src/main/resources/naver-config.yml
