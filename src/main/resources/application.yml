@@ -50,7 +50,7 @@ spring:
             user-name-attribute: ${kakao.attribute}
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306
+    url: jdbc:mysql://localhost:3306/social_login_test
     username: root
     password: 1234
   jpa:
